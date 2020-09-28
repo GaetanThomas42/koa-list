@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Keen of Arts{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper {
+        margin: 1em auto;
+        width: 95%;
+        font: 20px/2 sans-serif;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .big-txt {
+        margin: 1em auto;
+        width: 95%;
+        font: 20px/2 sans-serif;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .example-wrapper code {
+        background: #F5F5F5;
+        padding: 2px 6px;
+    }
+</style>
+<div class="d-flex justify-content-center">
+    <img
+            src="https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-9/115733334_142885987463459_1287607629056725920_o.jpg?_nc_cat=107&_nc_sid=730e14&_nc_ohc=7Y5sCxFLApcAX9onCvP&_nc_ht=scontent-cdg2-1.xx&oh=7fc34bba5732bfe5c8165d052c1e11ad&oe=5F478CBA"
+            width="40%" height="11%">
+</div>
+
+<div class="p-5 ">
+    <p class="text-info text-center font-weight-bold"
+       style="font-family: Arial, Helvetica, sans-serif;font-size: 25px">
+        SCULPTURE<br> MUSIQUE<br> PEINTURE<br> ARTS DE LA SCENE <br>ARTS DE L’ÉCRITURE<br> ARTS DE L’IMAGE<br>
+        DESSIN<br> STREET ART<br> DIVERS<br><br></p>
+    <div class="card-body d-flex justify-content-center">
+        <p class="text-center "
+           style="font-family: Arial, Helvetica, sans-serif;font-size: 19px">
+            <span class="font-weight-bold">
+                Cher(e) ambassadeur(rice),</span><br><br>
+
+            Bonjour et merci de croire en notre projet KEEN OF ARTS.<br><br>
+
+            J’ai besoin de toi pour créer une communauté<br>
+            et montrer par le biais de capsules vidéos de moins de 1 minute<br>
+            que le monde entier est concerné par notre projet.<br><br>
+
+            Ci-dessous tu trouveras la liste des textes à enregistrer<br>
+            directement avec ton téléphone portable<br>
+            que nous monterons ensuite pour en faire 7 vidéos explicatives.<br><br>
+
+            Cela fonctionne comme une liste de mariage.<br>
+            Tu choisis une des 35 parties de vidéos à enregistrer,<br>
+            Tu inscrits tes prénom, ville et pays que nous renseignerons sur la vidéo,<br>
+            (si tu veux t’amuser tu peux changer de prénom et de ville)<br>
+            et une fois ta vidéo enregistrée tu me l’envoies par WhatsApp au <span class="font-weight-bold">+212 6 61 79 59 39.</span><br><br>
+
+            Fais ensuite passer la liste à tous tes amis qui veulent bien jouer le jeu.<br><br>
+
+            Attention, Cette liste se met à jour automatiquement et en direct<br>
+            pour éviter d’enregistrer les textes en double ou triple.<br>
+            Les plus rapides seront les premiers servis.<br><br>
+            <span class="font-weight-bold" >Tu as seulement 3 contraintes :<br>
+            - Te filmer en selfie et en gros plan (demi buste et visage),<br>
+            pour une meilleure qualité du son<br>
+            - Lire lisiblement le texte pour qu’il soit compréhensible par tous.<br>
+            - Et le faire le plus tôt possible (Y’a tout le montage encore à faire derrière ☺)<br><br>
+
+            Mais pour l’intonation, la mise en scène ou le décor, tu as carte blanche.<br><br></span>
+
+
+            Dès le montage terminé nous posterons les 7 vidéos sur notre chaine YouTube « Keen Of Arts »<br>
+            et notre page Facebook.<br><br>
+
+            Merci de ton soutien cher ambassadeur et à bientôt.<br><br>
+
+            Bruno et Gérard Duchet-Annez<br><br></p>
+    </div>
+    <div class="example-wrapper">
+        {% for cards in cardsByVideo %}
+            <p class="font-weight-bold d-flex justify-content-center my-5 text-{{ colors[loop.index] }}"
+               style="font-family: Arial, Helvetica, sans-serif;font-size: 28px"> Vidéo {{ loop.index }}
+                : {{ titles[loop.index] }}</p>
+            <div class="row text-center d-flex justify-content-around">
+                {% for card in cards %}
+                {% if card.user == null %}
+                <div class="col-md-6 col-lg-3 col-sm-6 card p-2 mx-4 my-5 border-{{ colors[loop.parent.loop.index] }} rounded-lg rounded-top">
+                    {% else %}
+                    <div class="col-md-6  col-lg-3 col-sm-6 mx-4 my-5 text-light bg-secondary card">
+                        {% endif %}
+                        <div class="card-header font-weight-bolder border-{{ colors[loop.parent.loop.index] }} bg-{{ colors[loop.parent.loop.index] }} big-txt">
+                            <p>{{ card.title }}</p></div>
+                        <div class="card-body">
+                            <p class="big-txt">{{ card.content }}</p>
+                        </div>
+                        <div class="card-footer ">
+                            {% if card.user == null %}
+                                <a href="keenofarts/takeCard/{{ card.id }}"
+                                   class="  btn  border-{{ colors[loop.parent.loop.index] }} d-flex align-items-end">
+                                    <p class="big-txt text-{{ colors[loop.parent.loop.index] }}">Je fais cette vidéo</p>
+                                </a>
+                            {% else %}
+                                <p>Cette vidéo a été faite par {{ card.user.prenom }}, {{ card.user.pays }}
+                                    , {{ card.user.ville }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% endblock %}

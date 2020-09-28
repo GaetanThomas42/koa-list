@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title%} Admin {% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-around sticky-top">    <a href="/keenofarts" class="btn btn-info">Retour</a>
+        <a href="add" class="btn btn-success">Ajouter Carte</a></div>
+
+    {% if cards %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Card Title</th>
+                <th>Card Content</th>
+                <th>Card User</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {%  for card in cards %}
+                <tr>
+                    <td>{{ card.title }}</td>
+                    <td>{{ card.content }}</td>
+                        {% if card.user != null %}
+                            <td>{{ card.user.prenom}} / {{ card.user.pays}} / {{ card.user.ville }}
+                                <a href="removeUser/{{ card.id }}" class="btn btn-danger my-3">Liberer la carte</a></td>
+                            {% else %}
+                                <td></td>
+                    {% endif %}
+                    <td>
+                        <a href="update/{{ card.id }}" class="btn btn-info">Modifier</a>
+                    </td>
+                    <td>
+                        <a href="delete/{{ card.id }}" class="btn btn-danger">Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+{% endblock %}

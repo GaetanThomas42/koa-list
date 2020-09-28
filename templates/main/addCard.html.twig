@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title%}New Capsule {% endblock %}
+
+{% block body %}
+
+    <h1>Add card</h1>
+    <a href="adminKOA" class="btn btn-danger my-5">RETOUR</a>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end (form) }}
+
+{% endblock %}

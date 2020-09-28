@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title%} {{ card.title }} {% endblock %}
+
+{% block body %}
+    <a href="/" class="btn btn-danger my-5">RETOUR</a>
+
+    <h1 class="d-flex justify-content-center my-5">{{ card.title }}</h1>
+    <p class="m-5 d-flex justify-content-center">{{ card.content }}</p>
+    <hr>
+    <div class="d-flex flex-column m-5">
+    <p>Veuillez inscrire votre nom, pays, ville afin de reserver la carte.</p>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end (form) }}
+        <p>Merci pour ta participation.</p>
+    </div>
+{% endblock %}
