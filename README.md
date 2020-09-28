@@ -1,6 +1,6 @@
 Symfony 5.1 Project
 
-Display of Card entities created.
+Display of Cards created with Twig.
 ![alt text](http://f.angiva.re/7Fcgc)
 
 Card reservation
