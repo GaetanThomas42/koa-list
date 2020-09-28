@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Annotation\Route;
 /**
- * @Route("/keenofarts")
+ * @Route("/")
  */
 class MainController extends AbstractController
 {
