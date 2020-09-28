@@ -35,18 +35,11 @@ class MainController extends AbstractController
             "warning",
             "success",
             "danger"];
-        $titles = ["","La présentation",
-            "Le concept",
-            "Les avantages pour les Artistes",
-            "Les avantages pour les Professionnels",
-            "Les avantages pour les Fans",
-            "Se faire de nouveaux amis",
-            "J'ai besoin de toi","","",""];
+
         return $this->render('main/index.html.twig', [
             'controller_name' => 'MainController',
             'cardsByVideo' => $cardsByVideo,
             'colors' => $colors,
-            'titles' => $titles
         ]);
     }
 
